@@ -41,12 +41,12 @@ class WechatyChannel(Channel):
         await bot.start()
 
     async def on_login(self, contact: Contact):
-        logger.info('[WX] login user={}'.format(contact))
+#         logger.info('[WX] login user={}'.format(contact))
 
     async def on_scan(self, status: ScanStatus, qr_code: Optional[str] = None,
                       data: Optional[str] = None):
         contact = self.Contact.load(self.contact_id)
-        logger.info('[WX] scan user={}, scan status={}, scan qr_code={}'.format(contact, status.name, qr_code))
+#         logger.info('[WX] scan user={}, scan status={}, scan qr_code={}'.format(contact, status.name, qr_code))
         # print(f'user <{contact}> scan status: {status.name} , 'f'qr_code: {qr_code}')
 
     async def on_message(self, msg: Message):
@@ -112,13 +112,13 @@ class WechatyChannel(Channel):
                     await self._do_send_group(content, room_id, room_name, from_user_id, from_user_name)
 
     async def send(self, message: Union[str, Message, FileBox, Contact, UrlLink, MiniProgram], receiver):
-        logger.info('[WX] sendMsg={}, receiver={}'.format(message, receiver))
+#         logger.info('[WX] sendMsg={}, receiver={}'.format(message, receiver))
         if receiver:
             contact = await bot.Contact.find(receiver)
             await contact.say(message)
 
     async def send_group(self, message: Union[str, Message, FileBox, Contact, UrlLink, MiniProgram], receiver):
-        logger.info('[WX] sendMsg={}, receiver={}'.format(message, receiver))
+#         logger.info('[WX] sendMsg={}, receiver={}'.format(message, receiver))
         if receiver:
             room = await bot.Room.find(receiver)
             await room.say(message)
@@ -152,7 +152,7 @@ class WechatyChannel(Channel):
             # image_storage.seek(0)
 
             # 图片发送
-            logger.info('[WX] sendImage, receiver={}'.format(reply_user_id))
+#             logger.info('[WX] sendImage, receiver={}'.format(reply_user_id))
             t = int(time.time())
             file_box = FileBox.from_url(url=img_url, name=str(t) + '.png')
             await self.send(file_box, reply_user_id)
@@ -185,7 +185,7 @@ class WechatyChannel(Channel):
             if not img_url:
                 return
             # 图片发送
-            logger.info('[WX] sendImage, receiver={}'.format(reply_room_id))
+#             logger.info('[WX] sendImage, receiver={}'.format(reply_room_id))
             t = int(time.time())
             file_box = FileBox.from_url(url=img_url, name=str(t) + '.png')
             await self.send_group(file_box, reply_room_id)

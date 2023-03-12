@@ -29,7 +29,7 @@ class BaiduVoice(Voice):
             fileName = TmpDir().path() + '语音回复_' + str(int(time.time())) + '.mp3'
             with open(fileName, 'wb') as f:
                 f.write(result)
-            logger.info('[Baidu] textToVoice text={} voice file name={}'.format(text, fileName))
+#             logger.info('[Baidu] textToVoice text={} voice file name={}'.format(text, fileName))
             return fileName
         else:
             logger.error('[Baidu] textToVoice error={}'.format(result))

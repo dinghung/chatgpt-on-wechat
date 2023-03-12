@@ -19,8 +19,8 @@ class OpenaiVoice(Voice):
         file = open(voice_file, "rb")
         reply = openai.Audio.transcribe("whisper-1", file)
         text = reply["text"]
-        logger.info(
-            '[Openai] voiceToText text={} voice file name={}'.format(text, voice_file))
+#         logger.info(
+#             '[Openai] voiceToText text={} voice file name={}'.format(text, voice_file))
         return text
 
     def textToVoice(self, text):

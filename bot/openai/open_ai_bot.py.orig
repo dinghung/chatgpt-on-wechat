@@ -17,8 +17,13 @@ class OpenAIBot(Bot):
     def reply(self, query, context=None):
         # acquire reply content
         if not context or not context.get('type') or context.get('type') == 'TEXT':
-#             logger.info("[OPEN_AI] query={}".format(query))
+<<<<<<< Updated upstream
+            logger.info("[OPEN_AI] query={}".format(query))
             from_user_id = context.get('from_user_id') or context.get('session_id')
+=======
+#             logger.info("[OPEN_AI] query={}".format(query))
+            from_user_id = context['from_user_id']
+>>>>>>> Stashed changes
             if query == '#清除记忆':
                 Session.clear_session(from_user_id)
                 return '记忆已清除'

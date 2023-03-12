@@ -134,7 +134,7 @@ class WechatChannel(Channel):
 
     def send(self, msg, receiver):
         itchat.send(msg, toUserName=receiver)
-        logger.info('[WX] sendMsg={}, receiver={}'.format(msg, receiver))
+#         logger.info('[WX] sendMsg={}, receiver={}'.format(msg, receiver))
 
     def _do_send_voice(self, query, reply_user_id):
         try:
@@ -146,7 +146,7 @@ class WechatChannel(Channel):
             if reply_text:
                 replyFile = super().build_text_to_voice(reply_text)
                 itchat.send_file(replyFile, toUserName=reply_user_id)
-                logger.info('[WX] sendFile={}, receiver={}'.format(replyFile, reply_user_id))
+#                 logger.info('[WX] sendFile={}, receiver={}'.format(replyFile, reply_user_id))
         except Exception as e:
             logger.exception(e)
 
@@ -181,7 +181,7 @@ class WechatChannel(Channel):
 
             # 图片发送
             itchat.send_image(image_storage, reply_user_id)
-            logger.info('[WX] sendImage, receiver={}'.format(reply_user_id))
+#             logger.info('[WX] sendImage, receiver={}'.format(reply_user_id))
         except Exception as e:
             logger.exception(e)
 
